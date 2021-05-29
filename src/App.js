@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import UsersList from './components/UsersList';
+import Registration from './components/Registration';
+import Login from './components/Login'
+import api from './api/users';
 
-function App() {
+
+
+
+const App = () => {
+
+const [ usersList, setUsersList ] = useState([]);
+const [ showRegistration, setshowRegistration ] = useState(false);
+
+//READ
+useEffect(() => {
+  const getAllUsers = async () => {
+    const allUsers = await api.get("/users");
+    if(allUsers){
+      setUsersList([...allUsers.data])
+    }
+  }
+  getAllUsers();
+}, [])
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <UsersList usersList={usersList}/>
+      <button onClick={() => setshowRegistration(!showRegistration)}>{!showRegistration ? "ADD USER" : "CLOSE"}</button>
+      {showRegistration ? <Registration usersList={usersList}/> : null}
+      <Login usersList={usersList}/>
+    </>
   );
 }
 
