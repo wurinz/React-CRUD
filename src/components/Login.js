@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
@@ -12,8 +12,9 @@ const Login = ({
     
     const logInHandler = (user) => {
         if(usersList.find(currentUser => currentUser.email === user.email && currentUser.password === user.password)){
-            setIsLoggedIn(true);
-            history.push("/users")
+            history.push("/users");
+            localStorage.setItem("isLoggedIn", true);
+            setIsLoggedIn(localStorage.getItem("isLoggedIn"));
         } else {
             alert('Wrong email or password')
         }
@@ -28,7 +29,9 @@ const Login = ({
         password: yup.string().required('Enter your password')
     })
 
-    if(!isLoggedIn){
+    console.log(typeof localStorage.getItem("isLoggedIn"));
+
+    if(localStorage.getItem("isLoggedIn") === "false" || localStorage.getItem("isLoggedIn") === 'null'){
         return(
             <div className="login_container">
                 <h1>Log in</h1>
@@ -84,14 +87,28 @@ const Login = ({
                 </Link>
             </div>
         )
-    } else if (isLoggedIn){
+    } else { 
         return(
             <div className="logout_container">
+                <div className="header_nav">
+                    <Link to="/users">
+                        <button className="users_button">
+                            Users
+                        </button>
+                    </Link>
+                    <Link to="/documents">
+                        <button className="documents_button">
+                            Documents
+                        </button>
+                    </Link>
+                </div>
+                
                 <button 
                     className="logout_button"
                     onClick={() => {
                         setIsLoggedIn(false);
                         history.push('/');
+                        localStorage.setItem('isLoggedIn', false);
                     }}
                 >Log out</button>
             </div>

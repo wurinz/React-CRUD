@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import UsersList from './components/UsersList';
 import Registration from './components/Registration';
-import Login from './components/Login'
+import Login from './components/Login';
+import DocumentsList from './components/DocumentsList';
+
 import api from './api/users';
 
 
@@ -11,7 +13,7 @@ import api from './api/users';
 const App = () => {
 
 const [ usersList, setUsersList ] = useState([]);
-const [ showRegistration, setshowRegistration ] = useState(false);
+const [ documentsList, setDocumentsList ] = useState([])
 
 //READ
 useEffect(() => {
@@ -23,7 +25,15 @@ useEffect(() => {
   }
   getAllUsers();
 }, [])
-
+useEffect(() => {
+  const getAllDocuments = async () => {
+    const allDocuments = await api.get('/documents'); 
+    if(allDocuments){
+      setDocumentsList([...allDocuments.data]);
+    }
+  }
+  getAllDocuments();
+}, [])
 
 
   return (
@@ -32,15 +42,21 @@ useEffect(() => {
       <Login usersList={usersList}/>
       <Route
         path={'/login'}
+        exact={true}
         render={props => <Login {...props} usersList={usersList}/>}
       />
       <Route
         path={'/registration'}
+        exact={true}
         render={props => <Registration {...props} usersList={usersList}/>}
       />
       <Route 
         path={'/users'}
         render={props => <UsersList {...props} usersList={usersList}/>}
+      />
+      <Route
+        path={'/documents'}
+        render={props => <DocumentsList {...props} documentsList={documentsList}/>}
       />
     </Router>
     </div>
