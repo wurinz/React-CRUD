@@ -28,9 +28,7 @@ const Login = ({
         email: yup.string().required('Enter your email').email('invalid email'),
         password: yup.string().required('Enter your password')
     })
-
-    console.log(typeof localStorage.getItem("isLoggedIn"));
-
+    
     if(localStorage.getItem("isLoggedIn") === "false" || localStorage.getItem("isLoggedIn") === 'null'){
         return(
             <div className="login_container">

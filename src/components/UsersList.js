@@ -57,7 +57,7 @@ const UsersList = ({
                 {renderUsersList(usersList)}
             </div>
             <Route
-
+                path={"/"}
             />
         </Router>
         

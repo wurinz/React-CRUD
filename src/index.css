@@ -91,11 +91,11 @@ h1{
 }
 
 /* LOGIN */
-.login_container, .registration_container{
+.login_container, .registration_container, .edit_container{
   color: #fff;
   width: 500px;
   margin: 150px auto;
-  background: rgba(255, 255, 255, 0.068);
+  background: rgba(255, 255, 255, 0.062);
   border-radius: 15px;
   overflow: hidden;
   z-index: 10;
@@ -177,7 +177,8 @@ h1{
   color: #fff;
   width: 90%;
   margin: 30px auto;
-  background: rgba(255, 255, 255, 0.068);
+  /* background: rgba(255, 255, 255, 0.164); */
+  background: rgba(0, 0, 0, 0.055);
   border-radius: 15px;
   overflow: hidden;
   z-index: 10;
@@ -249,10 +250,6 @@ h1{
 
 
 /* UPLOAD */
-/* .document_interaction{
-  width: 200px;
-  color: red;
-} */
 .document_interaction{
   background-color:red;
 }
@@ -263,6 +260,21 @@ h1{
   padding-top: 8px;
   bottom: 0;
   background-color: rgb(153, 0, 255);
+}
+
+
+/* EDIT */
+.edit_container{
+  margin-top: 80px;
+}
+.edit_form{
+  margin-top: 20px;
+}
+.update_button{
+  background-color: rgb(69, 134, 253);
+  font-size: 15px;
+  margin-top: 20px;
+  width: 250px;
 }
 
 

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import UsersList from './components/UsersList';
 import Registration from './components/Registration';
 import Login from './components/Login';
+import EditUser from './components/EditUser';
 import DocumentsList from './components/DocumentsList';
 
 import api from './api/users';
@@ -39,6 +40,8 @@ useEffect(() => {
   return (
     <div className="container">
     <Router>
+    <Link to='/edit'>Edit</Link>
+
       <Login usersList={usersList}/>
       <Route
         path={'/login'}
@@ -57,6 +60,10 @@ useEffect(() => {
       <Route
         path={'/documents'}
         render={props => <DocumentsList {...props} documentsList={documentsList}/>}
+      />
+      <Route 
+        path={'/edit'}
+        render={props => <EditUser />}
       />
     </Router>
     </div>
