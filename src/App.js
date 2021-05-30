@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import UsersList from './components/UsersList';
 import Registration from './components/Registration';
 import Login from './components/Login'
@@ -26,12 +27,23 @@ useEffect(() => {
 
 
   return (
-    <>
-      <UsersList usersList={usersList}/>
-      <button onClick={() => setshowRegistration(!showRegistration)}>{!showRegistration ? "ADD USER" : "CLOSE"}</button>
-      {showRegistration ? <Registration usersList={usersList}/> : null}
+    <div className="container">
+    <Router>
       <Login usersList={usersList}/>
-    </>
+      <Route
+        path={'/login'}
+        render={props => <Login {...props} usersList={usersList}/>}
+      />
+      <Route
+        path={'/registration'}
+        render={props => <Registration {...props} usersList={usersList}/>}
+      />
+      <Route 
+        path={'/users'}
+        render={props => <UsersList {...props} usersList={usersList}/>}
+      />
+    </Router>
+    </div>
   );
 }
 
