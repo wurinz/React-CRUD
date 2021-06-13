@@ -14,6 +14,7 @@ const DocumentsList = ({
     const hadnleFile = (event) => {
         console.log(event.target.files);
         const currentFile = event.target.files[0];
+        console.log(currentFile);
         setFile(currentFile);
     }
 

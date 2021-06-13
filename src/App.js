@@ -40,7 +40,6 @@ useEffect(() => {
   return (
     <div className="container">
     <Router>
-    <Link to='/edit'>Edit</Link>
 
       <Login usersList={usersList}/>
       <Route

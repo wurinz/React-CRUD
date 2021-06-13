@@ -41,7 +41,7 @@ const UsersList = ({
                                 <p>{user.email}</p>
                             </div>
                             <div>
-                                <FontAwesomeIcon style={{color: "orange", fontSize: "25px", cursor: "pointer"}}icon={faEdit} onClick={() => handleEdit(user.id)}/>
+                                <Link to='/edit'><FontAwesomeIcon style={{color: "orange", fontSize: "25px", cursor: "pointer"}}icon={faEdit} onClick={() => handleEdit(user.id)}/></Link>
                                 <FontAwesomeIcon style={{color: "darkred", fontSize: "25px", marginLeft: "20px", cursor: "pointer"}}icon={faTrashAlt} onClick={() => handleDelete(user.id)}/>
                             </div>
                         </li>
